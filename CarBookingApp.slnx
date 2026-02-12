@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CarBookingApp/CarBookingApp.csproj" />
+  <Project Path="CarBookingAppData/CarBookingAppData.csproj" Id="eeec2cde-2e09-4109-80da-a72391ce220a" />
+</Solution>
