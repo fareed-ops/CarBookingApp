@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CarBookingAppData
@@ -8,6 +9,8 @@ namespace CarBookingAppData
     {
         public int Id { get; set; }
         public int Year { get; set; }
-        public string Name  { get; set; }
+        [Required]
+        [StringLength(150, ErrorMessage = "Name is too long !!!")]
+        public  string Name  { get; set; }
     }
 }
