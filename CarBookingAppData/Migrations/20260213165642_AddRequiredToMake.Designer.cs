@@ -3,6 +3,7 @@ using CarBookingAppData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarBookingAppData.Migrations
 {
     [DbContext(typeof(CarBookingAppDbContext))]
-    partial class CarBookingAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260213165642_AddRequiredToMake")]
+    partial class AddRequiredToMake
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +32,7 @@ namespace CarBookingAppData.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("MakeId")
+                    b.Property<int?>("MakeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Model")
@@ -69,9 +72,7 @@ namespace CarBookingAppData.Migrations
                 {
                     b.HasOne("CarBookingAppData.Make", "Make")
                         .WithMany("Cars")
-                        .HasForeignKey("MakeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MakeId");
 
                     b.Navigation("Make");
                 });

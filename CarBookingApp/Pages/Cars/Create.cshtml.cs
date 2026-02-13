@@ -18,21 +18,30 @@ namespace CarBookingApp.Pages.Cars
             _context = context;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
 
         [BindProperty]
         public Car Car { get; set; } = default!;
+        public SelectList Makes { get; set; }
+
+
+
+        public IActionResult OnGet()
+        {
+            Makes = new SelectList(_context.Makes.ToList(), "Id", "Name");
+            return Page();
+        }
+
+
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                Makes = new SelectList(_context.Makes.ToList(), "Id", "Name");
                 return Page();
             }
+
 
             _context.Cars.Add(Car);
             await _context.SaveChangesAsync();
