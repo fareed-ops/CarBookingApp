@@ -14,6 +14,7 @@ namespace CarBookingAppData
 
         [Required]
         [StringLength(150)]
+        [Display(Name = "Make")]
         public string Name { get; set; } = null!;
 
         public virtual List<Car> Cars { get; set; } = new List<Car>();

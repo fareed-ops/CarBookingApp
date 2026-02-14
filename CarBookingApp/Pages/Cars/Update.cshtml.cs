@@ -22,18 +22,18 @@ namespace CarBookingApp.Pages.Cars
         [BindProperty]
         public Car Car { get; set; } = default!;
 
+        public SelectList Makes { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            
 
             var car =  await _context.Cars.FirstOrDefaultAsync(m => m.Id == id);
             if (car == null)
             {
                 return NotFound();
             }
+            Makes = new SelectList(_context.Makes.ToList(), "Id", "Name"); 
             Car = car;
             return Page();
         }
